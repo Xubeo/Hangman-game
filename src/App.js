@@ -1,19 +1,23 @@
 import React from "react"
-import { useState } from "react";
+//import { useState } from "react";
 import './App.css';
-import Button from "./component/button";
-import { ReactToastify, toast } from 'react-toastify';
+//import { ReactToastify, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import CallApi from "./component/CallApi";
+import { ThemeContext } from "./context/theme";
+import { useContext } from "react";
 
 function App(props) {
+  const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
+  console.log("theme", theme);
   return (
-    <div>
-      <CallApi></CallApi>
-      <h1>Jeu du pendu</h1>
-      <h2>Trouvez le bon mot, vous avez 10 essais</h2>
-      <p>Mot</p>
-    </div>
+    <div className="app" style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
+      <div>
+        <h1>Jeu du pendu</h1>
+        <h2 className="Hangman">Trouvez le bon mot, vous avez 10 essais et le mot possède <CallApi></CallApi> lettres</h2><br></br>
+        <button onClick={toggleTheme}>Changer de theme</button>
+        </div>
+      </div>
   );
 };
 

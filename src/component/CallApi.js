@@ -1,5 +1,6 @@
-import react from "react";
+//import react from "react";
 import { useEffect, useState } from "react";
+import Words from "./Words";
 
 const GOOD_LETTER = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBNéàè"
 function CallApi() {
@@ -33,12 +34,13 @@ function CallApi() {
     if (!word) {
         return <p>waiting</p>;
     };
-
-    return (
-        <div>
-            <p>{word.word}</p>
-        </div>
-    );
+    
+        return (
+            <div>
+                {console.log(word.word)}
+                <Words word={word.word}></Words>
+            </div>
+        );
 }
 
 export default CallApi;
