@@ -5,16 +5,13 @@ import 'react-toastify/dist/ReactToastify.css'
 import CallApi from "./component/CallApi";
 import { ThemeContext } from "./context/theme";
 import { useContext } from "react";
+import Ranking from "./component/Ranking";
 import WrongLetters from "./component/WrongLetters";
 
-let life = true;
-const correctLetters = [];
+
 const wrongLetter = [];
 
 function App(props) {
-  const [life, setLife] = useState(true);
-  const [correctLetters, setCorrectLetters] = useState([]);
-  const [wrongLetters, setWrongLetters] = useState([]);
   const [{ theme, isDark }, toggleTheme] = useContext(ThemeContext);
   console.log("theme", theme);
   return (
@@ -25,6 +22,9 @@ function App(props) {
         <CallApi></CallApi>
         <WrongLetters wrongLetters={wrongLetter}></WrongLetters>
         <button className="theme_button" onClick={toggleTheme}>Changer de theme</button>
+        <div>
+          <Ranking></Ranking>
+        </div>
         </div>
       </div>
   );

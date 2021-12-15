@@ -1,7 +1,8 @@
 //import react from "react";
 import { useEffect, useState } from "react";
 
-const GOOD_LETTER = []
+const GOOD_LETTER = "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbnéàâêè";
+const correct_letter = [];
 function CallApi() {
     const [word, setword] = useState(undefined);
     useEffect(() => {
@@ -31,7 +32,7 @@ function CallApi() {
     };
 
     if (!word) {
-        return <p>waiting</p>;
+        return <p>en attente du mot</p>;
     };
 
     return (
@@ -40,13 +41,11 @@ function CallApi() {
             {word.word.split('').map( (letter, i) => {
                 return (
                     <span className="letter" key={i}>
-                        {GOOD_LETTER.includes(letter) ? letter : ''}
+                        {correct_letter.includes(letter) ? letter : ''}
                     </span>
                 )
             })}
         </div>
-
-
     );
 }
 
