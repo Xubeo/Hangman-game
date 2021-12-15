@@ -1,16 +1,15 @@
 //import react from "react";
 import { useEffect, useState } from "react";
-import Words from "./Words";
 
-const GOOD_LETTER = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBNéàè"
+const GOOD_LETTER = []
 function CallApi() {
     const [word, setword] = useState(undefined);
-    useEffect(()=> {
+    useEffect(() => {
         (async () => {
-            const {data} = await getWord();
+            const { data } = await getWord();
             setword(data);
         })();
-        return () => {};  
+        return () => { };
     }, []);
 
     const handleKeyDown = (event) => {
@@ -34,13 +33,21 @@ function CallApi() {
     if (!word) {
         return <p>waiting</p>;
     };
-    
-        return (
-            <div>
-                {console.log(word.word)}
-                <Words word={word.word}></Words>
-            </div>
-        );
+
+    return (
+        <div className="word">
+            {console.log(word.word)}
+            {word.word.split('').map( (letter, i) => {
+                return (
+                    <span className="letter" key={i}>
+                        {GOOD_LETTER.includes(letter) ? letter : ''}
+                    </span>
+                )
+            })}
+        </div>
+
+
+    );
 }
 
 export default CallApi;
